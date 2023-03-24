@@ -1,0 +1,5 @@
+function GalleryList({gallerylist}) {
+    return (
+        
+    )
+}
