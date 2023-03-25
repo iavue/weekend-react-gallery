@@ -6,7 +6,7 @@ function GalleryItem({galleryItem}) {
     // We want showDescription to be false at first so when we click on the image, it will toggle to true and show the description.
     const [showDescription, setShowDescription] = useState(false);
 
-    // The default for likeCount is 0 since galleryItem.likes=0
+    // The default for likeCount is whatever is in the gallery.data module
     const [likeCount, setLikeCount] = useState(galleryItem.likes);
 
     const handleClick = () => {
@@ -40,8 +40,8 @@ function GalleryItem({galleryItem}) {
             <img src={galleryItem.path} alt={galleryItem.title} />
         </a> )}
         <div className='likeBox'>
-        <button onClick={updateCount}>Love</button>
-        <p>{likeCount} 💜</p>
+        <button onClick={updateCount}>❤️</button>
+        <p>{likeCount} hearts</p>
         </div>
         </div>
     );
