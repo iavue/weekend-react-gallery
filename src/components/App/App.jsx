@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
+import GalleryList from '../GalleryList/GalleryList.jsx';
 
 function App() {
 
@@ -16,7 +17,7 @@ function App() {
       url: '/gallery'
     }).then((response) => {
       console.log('Response.data from client GET:', response.data);
-      galleryList(response.data);
+      setGalleryList(response.data);
       console.log('galleryList:', galleryList);
     }).catch((err) => {
       console.log('Error on client GET:', err);
@@ -26,10 +27,9 @@ function App() {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Gallery of My Life</h1>
+          <h1 className="App-title">Art Gallery</h1>
         </header>
-        <p>Gallery goes here</p>
-        <img src="images/goat_small.jpg"/>
+        <GalleryList galleryList={galleryList}/>
       </div>
     );
 }
