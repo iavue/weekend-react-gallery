@@ -1,26 +1,36 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 function GalleryItem({galleryItem}) {
 
+    // We want showDescription to be false at first so when we click on the image, it will toggle to true and show the description.
     const [showDescription, setShowDescription] = useState(false);
+
+    // The default for likeCount is 0 since galleryItem.likes=0
+    const [likeCount, setLikeCount] = useState(galleryItem.likes);
 
     const handleClick = () => {
         console.log('Inside handleClick() for clicking an image.');
-        // ! to toggle the 'showDescription' state between true and false
+        // Use ! to toggle the 'showDescription' state between true and false
         setShowDescription(!showDescription);
     }
 
-    const handleLike = () => {
-        console.log('Inside handleLike() for the Like button.');
-        let num = 0;
-        // increment the num of likes
-        num += 1;
-        console.log('Num:', num);
-        galleryItem.likes = num;
+    const updateCount = () => {
+        console.log('Inside updateCount() for the Like count.');
+
+        axios({
+            method: 'PUT',
+            url: '/gallery/like/:id'
+        }).then((response) => {
+            // After PUT request is successful, update likeCount using setLikeCount
+            setLikeCount(likeCount + 1);
+        }).catch((err) => {
+            console.log('Unable to update like count', err);
+        });
     }
 
     return (
-        <>
+        <div className='galleryItemBox'>
         {/* if showDescription is true, the description should render */}
         {showDescription ? (
         <p>{galleryItem.description}</p>
@@ -29,9 +39,11 @@ function GalleryItem({galleryItem}) {
         <a href="#" onClick={handleClick}>
             <img src={galleryItem.path} alt={galleryItem.title} />
         </a> )}
-        <button onClick={handleLike}>Like</button>
-        <p>Likes: {galleryItem.likes}</p>
-        </>
+        <div className='likeBox'>
+        <button onClick={updateCount}>Love</button>
+        <p>{likeCount} 💜</p>
+        </div>
+        </div>
     );
 }
 

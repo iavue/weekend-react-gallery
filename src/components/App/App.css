@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  
 }
 
 .App-header {
@@ -16,4 +17,11 @@
 img {
   max-width: 100px;
   max-height: 100px;
+  border: solid black 5px;
+}
+
+.gallery-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
