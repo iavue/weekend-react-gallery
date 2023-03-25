@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
 import GalleryList from '../GalleryList/GalleryList.jsx';
+// import GalleryItem from '../GalleryItem/GalleryItem';
 
 function App() {
 
@@ -23,6 +24,8 @@ function App() {
       console.log('Error on client GET:', err);
     })
   }
+
+  
 
     return (
       <div className="App">
