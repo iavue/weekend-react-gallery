@@ -33,7 +33,7 @@ function GalleryItem({galleryItem}) {
         <div className='galleryItemBox'>
         {/* if showDescription is true, the description should render */}
         {showDescription ? (
-        <p>{galleryItem.description}</p>
+        <div onClick={handleClick}>{galleryItem.description}</div>
         ) : (
         // else, render the image
         <a href="#" onClick={handleClick}>
